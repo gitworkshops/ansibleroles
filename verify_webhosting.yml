@@ -1,0 +1,24 @@
+---
+
+- hosts: 10.120.94.178
+  become: yes
+  tasks:
+
+     - name: Check URL
+       uri:
+        url: http://10.120.94.178:80
+        return_content: yes
+       register: http_url
+       ignore_errors: true
+
+     - name:  Http URL and Port status
+       debug:
+        msg: " URL is UP"
+       when: http_url is succeeded
+
+     - name:  Http URL and Port status
+       fail:
+        msg: "Http URL is down"
+       when: http_url is failed
+
+
