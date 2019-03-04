@@ -1,6 +1,10 @@
 pipeline {
     agent any
     
+            environment {
+                        ANSIBLE_ROLE_NAME='splunk-uniforwarder'
+                      }
+    
     stages {
         stage('Build version') {
            steps {
